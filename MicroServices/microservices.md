@@ -25,14 +25,14 @@ Microservices are designed to cope with failure.  Since several unique and diver
 
 To follow our brief overview of microservices here, it will help to have at least a basic grasp of the following concepts:
 
-- Object Oriented Programming (OOP)—a modern programming paradigm (see also SOLID)
+- Object Oriented Programming (OOP)— *a modern programming paradigm (see also SOLID)*
 
-- Web service / API—a way to expose the functionality of your application to others, without a user interface
+- Web service / API— *a way to expose the functionality of your application to others, without a user interface*
 
-- Service Oriented Architecture (SOA)—a way of structuring many related applications to work together, rather than trying to solve all problems in one application
+- Service Oriented Architecture (SOA)— *a way of structuring many related applications to work together, rather than trying to solve all problems in one application*
 
-- Systems—in the general sense, meaning any collection of parts that can work together for a wider purpose
+- Systems— *in the general sense, meaning any collection of parts that can work together for a wider purpose*
 
-- Single Responsibility Principle (SRP)—the idea of code with one focus
+- Single Responsibility Principle (SRP)— *the idea of code with one focus*
 
-- Interface Segregation Principle (ISP)—the idea of code with defined boundaries.
+- Interface Segregation Principle (ISP)— *the idea of code with defined boundaries.*

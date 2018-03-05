@@ -1,6 +1,8 @@
 Kafka
 ---
 
+Kafka is a distributed publish-subscribe messaging system that is designed to be fast, scalable, and durable.
+
 ![kafka_use_cases](./images/kafka_usecases.png)
 
 ---
@@ -10,8 +12,6 @@ Kafka
 ---
 
 ![kafka_in_enterprise](./images/kafka_in_enterprise.png)
-
----
 
 # Topics & Partitions
 
@@ -128,6 +128,85 @@ Kafka
 - You cannot have more consumers than partitions (otherwise some will be inactive)
 
 ![consumers_2](./images/consumers_2.png)
+
+## Consumer Offsets
+
+- Kafka stores the offsets at which a consumer group has been reading
+
+- The offset commit live in a Kafka topic named `__consumer_offsets`
+
+- When a consumer has processed data received some Kafka, it should be committing the offsets
+
+- If a consumer process dies, it will be able to read back from where it left off thanks to consumer offsets!
+
+![consumers_3](./images/consumers_3.png)
+
+---
+
+# Zookeeper
+
+- Zookeeper manages brokers (keeps a list of them)
+
+- Zookeeper helps in performing leader election for partitions
+
+- Zookeeper sends notifications to Kafka in case of changes (e.g. new topic, broker dies, broker comes up, delete topics etc...)
+
+- **Kafka can not work without a Zookeeper**
+
+- Zookeeper ususally operates in an odd quorum (cluster) of servers (3,5,7)
+
+- Zookeeper has a leader, the rest of the servers are followers
+ 
+![zookeeper](./images/zookeeper.png)
+
+---
+
+# Kafka Guarantees
+
+- Messages are appended to a topic-partition in the order they are sent
+
+- Consumer reads messages in the order stored in a topic-partition
+
+- With a replication factor of N, producers and consumers can tolerate up to N-1 brokers being down
+
+- This is why a replication factor of 3 is a good idea:
+	
+	- Allows for one broker to be taken down for maintenance
+
+	- Allows for another broker to be taken down unexpectedly
+
+- As long as the number of partitions remains constant for a topic (no new partitions), the same key will always go to the same partition
+
+---
+
+# Delivery semantics for consumers
+
+Consumers choose when to commit offsets.
+
+	- __At most once:__ offsets are committed as soon the message is received. If the processing goes wrong, the message will be lost (it won't be read again).
+
+	- __At least once:__ offsets are committed after the message is processed. If the processing goes wrong, the message will be read again. This can result in duplicate processing of messages. Make sure your processing is idempotent (i.e. processing again the messages won't impact your systems)
+
+	- __Exactly once:__ Very difficult to acheive / needs strong engineering.
+
+__**Bottom Line:**__ most often you should use at least once processing and ensure your transformations / processing are idempotent.
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
