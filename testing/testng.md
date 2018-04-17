@@ -27,3 +27,54 @@ TestNG is an open source automated testing framework; where NG of TestNG means N
 
 - `@Test`: The annotated method is a part of a test case.
 
+---
+
+# Configure TestNG to use the PowerMock object factory (Mocking static objects with TestNG)
+
+## Using suite.xml
+
+In your suite.xml add the following in the suite tag: `object-factory="org.powermock.modules.testng.PowerMockObjectFactory"` e.g.
+
+```xml
+<suite name="dgf" verbose="10"
+    object-factory="org.powermock.modules.testng.PowerMockObjectFactory">
+    <test name="dgf">
+        <classes>
+            <class name="com.mycompany.Test1"/>
+            <class name="com.mycompany.Test2"/>
+        </classes>
+    </test> 
+```
+
+If you're using Maven you may need to point out the file to Surefire:
+
+```xml
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <suiteXmlFiles>
+        <suiteXmlFile>suite.xml</suiteXmlFile>
+        </suiteXmlFiles>
+    </configuration> 
+</plugin> 
+```
+
+## Programmatically
+
+Add a method like this to your test class:
+
+```java
+
+@ObjectFactory public IObjectFactory getObjectFactory() {
+     return new org.powermock.modules.testng.PowerMockObjectFactory(); 
+} 
+```
+
+or to be on the safe side you can also extend from the `PowerMockTestCase`:
+
+```java
+@PrepareForTest(IdGenerator.class) 
+public class MyTestClass extends PowerMockTestCase { ... }
+```

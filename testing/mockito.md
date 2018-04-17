@@ -40,3 +40,11 @@ public void whenCreateSpy_thenCreate() {
 In a mock all methods are stubbed and return "smart return types". This means that calling any method on a mocked class will do nothing unless you specify behaviour.
 
 In a spy the original functionality of the class is still there but you can validate method invocations in a spy and also override method behaviour.
+
+---
+
+
+# PowerMockito 
+
+PowerMockito is a PowerMock’s extension API to support Mockito. It provides capabilities to work with the Java Reflection API in a simple way to overcome the problems of Mockito, such as the lack of ability to mock final, static or private methods.
+
