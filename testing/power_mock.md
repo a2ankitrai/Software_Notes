@@ -159,7 +159,7 @@ https://github.com/powermock/powermock/wiki/Suppress-Unwanted-Behavior
 
 # Important Trivia
 
-Mocking a static method of a class works with a combination of PowerMock + Junit. Mocking static objects with TestNG causes issues
+Mocking a static method of a class works with a combination of PowerMock + Junit.
 
 Working code for the same:
 

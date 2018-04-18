@@ -1,0 +1,7 @@
+# Java files
+*.class
+
+
+#Gradle
+.gradle
+build

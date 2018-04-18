@@ -65,13 +65,147 @@ We can apply a Gradle plugin (this term is used when we add a plugin to a projec
 
 ---
 
-# Creating a Simple Java project with Gradle
+## Gradle Wrapper
 
-Our build script will create an executable jar file. In other words, we must be able to run our program by using the command:
+Gradle wrapper is a convinient feature of gradle that allows to maintain the version of the gradle build across differnt executions and platforms. Gradle Wrapper task can be created as below: 
 
-`java -jar jarfile.jar`
+```
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.6'
+}
+
+```
+ 
+--- 
+
+## Gradle Tasks
+
+**What is a Task?**
+
+Code that Gradle executes
+
+- Has a lifecycle
+- Has properties
+- Has 'actions'
+- Has dependencies
+
+Ways to create tasks in gradle
+
+```
 
 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
 
 To be continued...
 
