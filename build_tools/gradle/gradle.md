@@ -90,10 +90,18 @@ Code that Gradle executes
 - Has 'actions'
 - Has dependencies
 
-Ways to create tasks in gradle
+Ways to declare tasks in gradle
 
 ```
+project.task("Task1")
 
+task("Task2")
+
+task "Task3"
+
+task Task4
+
+Task4.description = "Task4 description"
 
 ```
 
