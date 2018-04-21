@@ -105,6 +105,21 @@ Task4.description = "Task4 description"
 
 ```
 
+**Running a Task**
+
+All tasks have a method called `doLast{}`
+
+```
+Task4.doLast {println "This is Task 4 in Action"}
+
+```
+
+or
+
+```
+Task3 << {println "This is Task 3 (three) in Running mode"}
+
+```
 
 
 

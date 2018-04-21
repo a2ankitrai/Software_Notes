@@ -48,3 +48,61 @@ In a spy the original functionality of the class is still there but you can vali
 
 PowerMockito is a PowerMock’s extension API to support Mockito. It provides capabilities to work with the Java Reflection API in a simple way to overcome the problems of Mockito, such as the lack of ability to mock final, static or private methods.
 
+## Mock private method call with PowerMockito
+
+```java
+
+public class PowerMockDemo {
+ 
+    public Point callPrivateMethod() {
+        return privateMethod(new Point(1, 1));
+    }
+ 
+    private Point privateMethod(Point point) {
+        return new Point(point.getX() + 1, point.getY() + 1);
+    }
+}
+```
+
+
+### Unit test
+
+```java
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+ 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.mock;
+ 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(PowerMockDemo.class)
+public class PowerMockDemoTest {
+ 
+    private PowerMockDemo powerMockDemoSpy;
+ 
+    @Before
+    public void setUp() {
+        powerMockDemoSpy = PowerMockito.spy(new PowerMockDemo());
+    }
+ 
+    @Test
+    public void testMockPrivateMethod() throws Exception {
+        Point mockPoint = mock(Point.class);
+ 
+        PowerMockito.doReturn(mockPoint)
+            .when(powerMockDemoSpy, "privateMethod", anyObject());
+ 
+        Point actualMockPoint = powerMockDemoSpy.callPrivateMethod();
+ 
+        assertThat(actualMockPoint, is(mockPoint));
+    }
+}
+```
+
