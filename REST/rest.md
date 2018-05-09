@@ -37,3 +37,25 @@ The purpose of HTTP headers is to provide metadata information about the body or
 - Headers MUST NOT include API or domain specific values.
 
 - If available, HTTP standard headers MUST be used instead of creating a custom header.
+
+
+---
+
+## Difference between PUT and PATCH
+
+**PUT** - replace the ENTIRE RESOURCE with the new representation provided
+
+**PATCH** - replace parts of the source resource with the values provided AND|OR other parts of the resource are updated that you havent provided (timestamps) AND|OR updating the resource effects other resources (relationships)
+
+The difference between the PUT and PATCH requests is reflected in the way the server processes the enclosed entity to modify the resource identified by the Request-URI. In a PUT request, the enclosed entity is considered to be a modified version of the resource stored on the origin server, and the client is requesting that the stored version be replaced. With PATCH, however, the enclosed entity contains a set of instructions describing how a resource currently residing on the origin server should be modified to produce a new version.
+
+
+
+
+
+
+
+
+
+
+
