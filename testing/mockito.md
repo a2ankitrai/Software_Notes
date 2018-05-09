@@ -106,3 +106,28 @@ public class PowerMockDemoTest {
 }
 ```
 
+---
+
+## Deep Stubs in Mockito
+
+`Answer<Object> org.mockito.Mockito.RETURNS_DEEP_STUBS`
+
+Optional Answer to be used with Mockito.mock(Class, Answer).
+
+Example that shows how deep stub works:
+
+```
+   Foo mock = mock(Foo.class, RETURNS_DEEP_STUBS);
+
+   // note that we're stubbing a chain of methods here: getBar().getName()
+   when(mock.getBar().getName()).thenReturn("deep");
+
+   // note that we're chaining method calls: getBar().getName()
+   assertEquals("deep", mock.getBar().getName());
+```
+
+WARNING: This feature should rarely be required for regular clean code! Leave it for legacy code. Mocking a mock to return a mock, to return a mock, (...), to return something meaningful hints at violation of Law of Demeter or mocking a value object (a well known anti-pattern).
+
+Good quote I've seen one day on the web: every time a mock returns a mock a fairy dies.
+
+Please note that this answer will return existing mocks that matches the stub. This behavior is ok with deep stubs and allows verification to work on the last mock of the chain.

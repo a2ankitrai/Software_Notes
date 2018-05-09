@@ -124,8 +124,9 @@ Task3 << {println "This is Task 3 (three) in Running mode"}
 
 
 
+---
 
-
+[Building a spring project in gradle](https://spring.io/guides/gs/gradle/#scratch)
 
 
 
