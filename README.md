@@ -25,3 +25,7 @@
 ## Front-End Frameworks
 
 - [React JS](./front_end_framework/react/react.js)
+
+## General Topics
+
+- [Code Review](./general/code-review.md)
