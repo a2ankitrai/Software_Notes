@@ -1,216 +1,38 @@
 Reactive Java
 ---
 
-[Github Repo Link](https://github.com/a2ankitrai/Rx-Java-Test)
+Reactive Programming is a new paradigm in which you use declarative code (in a manner that is similar to functional programming) in order to build asynchronous processing pipelines. It is an event-based model where data is pushed to the consumer, as it becomes available: we deal with asynchronous sequences of events.
 
-## The Basics
+This is important in order to be more efficient with resources and increase an application's capacity to serve large number of clients, without the headache of writing low-level concurrent or and/or parallelized code.
 
-In reactive programming the consumer reacts to the data as it comes in. This is the reason why asynchronous programming is also called reactive programming. Reactive programming allows to propagates event changes to registered observers.
+By being built around the core pillars of being fully **asynchronous** and **non-blocking**, Reactive Programming is an alternative to the more limited ways of doing asynchronous code in the JDK: namely `Callback` based APIs and `Future`.
 
-RxJava is the Java implementation of this concept. RxJava is published under the Apache 2.0 license. RxJava provides Java API for asynchronous programming with observable streams.
-
-Reactive programming provides a simple way of asynchronous programming. This allows to simplify the asynchronously processing of potential long running operations. It also provides a defined way of handling multiple events, errors and termination of the event stream. Reactive programming provides also a simplified way of running different tasks in different threads.
-
-## Build blocks for RxJava
- 
-
-- `observables` representing sources of data
-
-- `subscribers` (or observers) listening to the observables
-
-- a set of methods for modifying and composing the data
-
-An observable emits items; a subscriber consumes those items.
-
-### Observables
-
-Observables are the sources for the data. Usually they start providing data once a subscriber starts listening. An observable may emit any number of items (including zero items). It can terminate either successfully or with an error. Sources may never terminate, for example, an observable for a button click can potentially produce an infinite stream of events.
-
-
-### Subscribers
-
-A observable can have any number of subscribers. If a new item is emitted from the observable, the `onNext()` method is called on each subscriber. If the observable finishes its data flow successful, the `onComplete()` method is called on each subscriber. Similar, if the observable finishes its data flow with an error, the `onError()` method is called on each subscriber.
+It also facilitates composition, which in turn makes asynchronous code more readable and maintainable.
 
 ---
 
+# Reactive Streams
 
-## Creating Observables, subscribing to them and disposing them
+The **Reactive Streams** specification is an industry-driven effort to standardize Reactive Programming libraries on the JVM, and more importantly specify how they must behave so that they are interoperable. Implementors include Reactor 3 but also RxJava 2, Akka Streams, Vert.x and Ratpack. Reactive Streams have been incorporated into the JDK as java.util.concurrent.Flow in version 9.
 
-### Creating observables
+It contains 4 very simple interfaces as well as a TCK, which shouldn't be overlooked since it is the rules of the specification that bring the most value to it.
 
-![observable_types](./images/observable_types.png)
-
-An example for the usage of `Flowable`, is when you process touch events. You cannot control the user who is doing these touch events, but you can tell the source to emit the events on a slower rate in case you cannot processes them at the rate the user produces them.
-
-
-### Convenience methods to create observables**
-
-RxJava provides several convenience methods to create observables
-
-- `Observable.just("Hello")` - Allows to create an observable as wrapper around other data types
-
-- `Observable.fromIterable()` - takes an `java.lang.Iterable<T>` and emits their values in their order in the data structure
-
-- `Observable.fromArray()` - takes an array and emits their values in their order in the data structure
-
-- `Observable.fromCallable()` - Allows to create an observable for a `java.util.concurrent.Callable<V>`
-
-- `Observable.fromFuture()` - Allows to create an observable for a `java.util.concurrent.Future`
-
-- `Observable.interval()` - An observable that emits Long objects in a given interval
-
-
-Similar methods exists for the other data types, e.g., `*Flowable.just()`, `Maybe.just()` and `Single.just`.
-
-
-### Subscribing in RxJava
-
-To receive the data emitted from an observable you need to subscribe to it. observables offer a large variety of subscribe methods.
-
-```java
-
-Observable<Todo> todoObservable = Observable.create(emitter -> { ... });
-
-// Simply subscribe with a io.reactivex.functions.Consumer<T>, which will be informed onNext()
-Disposable disposable = todoObservable.subscribe(t -> System.out.print(t));
-
-// Dispose the subscription when not interested in the emitted data any more
-disposable.dispose();
-
-// Also handle the error case with a second io.reactivex.functions.Consumer<T>
-Disposable subscribe = todoObservable.subscribe(t -> System.out.print(t), e -> e.printStackTrace());
-```
-
-### Disposing subscriptions and using CompositeDisposable
-
-When listers or subscribers are attached they usually are not supposed to listen eternally.
-
-So it could happen that due to some state change the event being emitted by an observable might be not interesting any more.
-
-```java
-
-import io.reactivex.Single;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
-
-Single<List<Todo>> todosSingle = getTodos();
-
-Disposable disposable = todosSingle.subscribeWith(new DisposableSingleObserver<List<Todo>>() {
-
-    @Override
-    public void onSuccess(List<Todo> todos) {
-        // work with the resulting todos
-    }
-
-    @Override
-    public void onError(Throwable e) {
-        // handle the error case
-    }
-});
-
-// continue working and dispose when value of the Single is not interesting any more
-disposable.dispose();
-
-```
-
-
-*The `Single` class and other observable classes offer different subscribe methods, which return a `Disposable` object.*
-
-
-When working with multiple subscriptions, which may become obsolete due to the same state change using a `CompositeDisposable` is pretty handy to dispose a collection of subscriptions.
-
-```java
-
-import io.reactivex.Single;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableSingleObserver;
-
-public class CompositeDisposableTest {
-
-	public static void main(String[] args) {
-		
-		CompositeDisposable compositeDisposable = new CompositeDisposable();
-		
-		Single<String> single1 = Single.just("Alpha");
-		Single<String> single2 = Single.just("Beta");
-		Single<String> single3 = Single.just("Gamma");
-		
-		compositeDisposable.add(single1.subscribeWith(new DisposableSingleObserver<String>() {
-		    @Override
-		    public void onError(Throwable e) {
-		        // handle the error case
-		    }
-
-			@Override
-			public void onSuccess(String t) {
-				System.out.println(t);
-			}
-		}));
-		
-		compositeDisposable.add(single2.subscribe(System.out::println));
-		 
-		compositeDisposable.add(single3.subscribe(System.out::println));
-		
-		compositeDisposable.dispose();
-	}
-}
-```
-
+From a user perspective however, it is fairly low-level. Reactor 3  and other libraries aims at offering an higher level API that can be leverage in a large breadth of situations, building it on top of Reactive Streams `Publisher`.
 
 ---
 
-## Caching values of completed observables
+Java is not a "reactive language" in the sense that it doesn’t support coroutines natively. There are other languages on the JVM (Scala and Clojure) that support reactive models more natively, but Java itself does not until version 9. Java, however, is a powerhouse of enterprise development, and there has been a lot of activity recently in providing Reactive layers on top of the JDK. 
 
-When working with observables doing async calls on every subscription on an observable is often not necessary.
+**Reactive Streams** is a very low level contract, expressed as a handful of Java interfaces (plus a TCK), but also applicable to other languages. The interfaces express the basic building blocks of Publisher and Subscriber with explicit back pressure, forming a common language for interoperable libraries. Reactive Streams have been incorporated into the JDK as java.util.concurrent.Flow in version 9. The project is a collaboration between engineers from Kaazing, Netflix, Pivotal, Red Hat, Twitter, Typesafe and many others.
 
-It likely happens that observables are passed around in the application, without the need to do an such an expensive call all the time a subscription is added.
+**RxJava**: Netflix were using reactive patterns internally for some time and then they released the tools they were using under an open source license as Netflix/RxJava (subsequently re-branded as "ReactiveX/RxJava"). Netflix does a lot of programming in Groovy on top of RxJava, but it is open to Java usage and quite well suited to Java 8 through the use of Lambdas. There is a bridge to Reactive Streams. RxJava is a "2nd Generation" library according to David Karnok’s Generations of Reactive classification.
 
-The below code snippet makes use of the `cache` method, so that the `Single` instance keeps its result, once it was successful for the first time.
+**Reactor** is a Java framework from the Pivotal open source team (the one that created Spring). It builds directly on Reactive Streams, so there is no need for a bridge. The Reactor IO project provides wrappers around low-level network runtimes like Netty and Aeron. Reactor is a "4th Generation" library according to David Karnok’s Generations of Reactive classification.
 
-```java
+**Spring Framework 5.0** (first milestone June 2016) has reactive features built into it, including tools for building HTTP servers and clients. Existing users of Spring in the web tier will find a very familiar programming model using annotations to decorate controller methods to handle HTTP requests, for the most part handing off the dispatching of reactive requests and back pressure concerns to the framework. Spring builds on Reactor, but also exposes APIs that allow its features to be expressed using a choice of libraries (e.g. Reactor or RxJava). Users can choose from Tomcat, Jetty, Netty (via Reactor IO) and Undertow for the server side network stack.
 
-Single<List<Todo>> todosSingle = Single.create(emitter -> {
-    Thread thread = new Thread(() -> {
-        try {
-            List<Todo> todosFromWeb = // query a webservice
+**Ratpack** is a set of libraries for building high performance services over HTTP. It builds on Netty and implements Reactive Streams for interoperability (so you can use other Reactive Streams implementations higher up the stack, for instance). Spring is supported as a native component, and can be used to provide dependency injection using some simple utility classes. There is also some autoconfiguration so that Spring Boot users can embed Ratpack inside a Spring application, bringing up an HTTP endpoint and listening there instead of using one of the embedded servers supplied directly by Spring Boot.
 
-            System.out.println("I am only called once!");
-
-            emitter.onSuccess(todosFromWeb);
-        } catch (Exception e) {
-            emitter.onError(e);
-        }
-    });
-    thread.start();
-});
-
-// cache the result of the single, so that the web query is only done once
-Single<List<Todo>> cachedSingle = todosSingle.cache();
-
-cachedSingle.subscribe(... " Show todos times in a bar chart " ...);
-
-showTodosInATable(cachedSingle);
-
-cachedSingle.subscribe(... " Show todos in gant diagram " ...);
-
-anotherMethodThatsSupposedToSubscribeTheSameSingle(cachedSingle);
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Akka** is a toolkit for building applications using the Actor pattern in Scala or Java, with interprocess communication using Akka Streams, and Reactive Streams contracts are built in. Akka is a "3rd Generation" library according to David Karnok’s Generations of Reactive classification.
 
 

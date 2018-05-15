@@ -23,12 +23,27 @@ Maven also supports the notion of a parent POM. A parent POM enables you to defi
 
 ---
 
+# Creating a multi-module project
+
+To create a multi-module project in eclipse, create a quickstart maven project and change the packaging from `jar` to `pom`.
+
+```xml
+
+  <groupId>com.ank</groupId>
+  <artifactId>spring-shots</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+```
+
+
+
+---
 #Errors encountered in maven
 
 ## Exclude Transitive dependencies in maven
 
 [Stackoverflow question link](https://stackoverflow.com/questions/547805/exclude-all-transitive-dependencies-of-a-single-dependency/7556707#7556707)
-
 
 
 ## **Java version automatically change to java 1.5 after maven update**
