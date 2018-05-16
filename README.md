@@ -32,7 +32,7 @@
 
 ## REST
 
-- [RESTful web-services](./rest/rest.md)
+- [RESTful web-services](./rest_service/rest.md)
 
 ## Spring
 
