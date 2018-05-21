@@ -100,7 +100,7 @@ StepVerifier.create(T<Publisher>).{expectations...}.verify()
 
 Reactor ships with several operators that can be used to transform data.
 
-**map** method is used to yransform the items emitted by `Mono` or `Flux` by applying a synchronous function to each item.
+**map** method is used to transform the items emitted by `Mono` or `Flux` by applying a synchronous function to each item.
 
 ```java
 

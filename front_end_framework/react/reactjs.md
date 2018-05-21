@@ -151,3 +151,5 @@ ReactDOM.render(<Main/>, document.getElementById('root'));
 # React - State Management
 
 
+- Stateless Functional components
+

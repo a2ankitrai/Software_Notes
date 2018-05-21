@@ -42,6 +42,16 @@
 
 - Spring WebFlux
 
+## No-SQL
+
+- [Mongo DB](./no_sql/mongodb/mongodb.md)
+
+## System Design
+
+- [Eventually Consistent](./System_Design_Scalability/eventually_consistent.md)
+
+- [Twelve-Factor App](./System_Design_Scalability/twelve-factor_app.md)
+
 ## General Topics
 
 - [Code Review](./general/code-review.md)
