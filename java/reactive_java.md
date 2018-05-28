@@ -1,6 +1,18 @@
 Reactive Java
 ---
 
+Reactive programming is defined by the following principle:
+
+> Any “getter” for mutable state causes problems. Instead of using getters, any calculated, generated, loaded or received state values should be immediately sent into a channel and any part of the program that wants access to these values must subscribe to the channel.
+
+The idea is that we remove state from exposed parts of our program and encapsulate it inside channels instead. Channels clearly show data dependencies and effects, make changes easy to reason about and easy to maintain and otherwise simplify how we modify application state.
+
+Simply put: reactive programming manages asynchronous data flows between sources of data and components that need to react to that data.
+
+
+
+---
+
 Reactive Programming is a new paradigm in which you use declarative code (in a manner that is similar to functional programming) in order to build asynchronous processing pipelines. It is an event-based model where data is pushed to the consumer, as it becomes available: we deal with asynchronous sequences of events.
 
 This is important in order to be more efficient with resources and increase an application's capacity to serve large number of clients, without the headache of writing low-level concurrent or and/or parallelized code.
