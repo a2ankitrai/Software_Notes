@@ -1,0 +1,7 @@
+Gradle Docs
+---
+
+
+## Dependency Types
+
+
