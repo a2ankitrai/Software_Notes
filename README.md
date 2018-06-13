@@ -6,7 +6,7 @@
 
 - [Reactive Java (Rx-Java)](./java/reactive_java.md)
 
-- [Java 8](./java/java-8.md)
+- [Java 8](./java/java-8/java-8.md)
 
 - [Java 9](./java/java-9.md)
 
@@ -59,5 +59,3 @@
 - [Code Review](./general/code-review.md)
 
 - [Hibernate Code Generation for Database Table](./general/hibernate_pojo_generation.md)
-
-
