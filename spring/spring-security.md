@@ -2,7 +2,7 @@
 
 Spring Security provides comprehensive security services for Java EE-based enterprise software applications.
 
-Two major areas of application security are **authentication** and **authorization** (or **access-control**). These are the two main areas that Spring Security targets. **Authentication** is the process of establishing a principal is who they claim to be (a **principal** generally means a user, device or some other system which can perform an action in your application).**Authorization** refers to the process of deciding whether a principal is allowed to perform an action within your application. To arrive at the point where an authorization decision is needed, the identity of the principal has already been established by the authentication process. 
+Two major areas of application security are **authentication** and **authorization** (or **access-control**). These are the two main areas that Spring Security targets. **Authentication** is the process of establishing a principal is who they claim to be (a **principal** generally means a user, device or some other system which can perform an action in your application).**Authorization** refers to the process of deciding whether a principal is allowed to perform an action within your application. To arrive at the point where an authorization decision is needed, the identity of the principal has already been established by the authentication process.
 
 At an authentication level, Spring Security supports a wide range of authentication models. Most of these authentication models are either provided by third parties, or are developed by relevant standards bodies such as the Internet Engineering Task Force. Specifically, Spring Security currently supports authentication integration with all of these technologies:
 
@@ -39,7 +39,7 @@ At an authentication level, Spring Security supports a wide range of authenticat
 
 
 
-Irrespective of the authentication mechanism, Spring Security provides a deep set of authorization capabilities. There are three main areas of interest: authorizing web requests, authorizing whether methods can be invoked and authorizing access to individual domain object instances. 
+Irrespective of the authentication mechanism, Spring Security provides a deep set of authorization capabilities. There are three main areas of interest: authorizing web requests, authorizing whether methods can be invoked and authorizing access to individual domain object instances.
 
 ---
 
@@ -47,15 +47,15 @@ Irrespective of the authentication mechanism, Spring Security provides a deep se
 
 It is useful to understand how Spring Security release numbers work, as it will help you identify the effort (or lack thereof) involved in migrating to future releases of the project. Each release uses a standard triplet of integers: `MAJOR.MINOR.PATCH`. The intent is that `MAJOR` versions are incompatible, large-scale upgrades of the API. `MINOR` versions should largely retain source and binary compatibility with older minor versions, thought there may be some design changes and incompatible updates. `PATCH` level should be perfectly compatible, forwards and backwards, with the possible exception of changes which are to fix bugs and defects.
 
-The extent to which you are affected by changes will depend on how tightly integrated your code is. If you are doing a lot of customization you are more likely to be affected than if you are using a simple namespace configuration. 
+The extent to which you are affected by changes will depend on how tightly integrated your code is. If you are doing a lot of customization you are more likely to be affected than if you are using a simple namespace configuration.
 
---- 
+---
 
 # Getting Spring Security
 
 ## Usage with Maven
 
-pom.xml. 
+pom.xml.
 
 ```xml
 
@@ -76,7 +76,7 @@ pom.xml.
 
 ## Gradle
 
-build.gradle. 
+build.gradle.
 
 ```
 dependencies {
@@ -85,20 +85,20 @@ dependencies {
 }
 ```
 
---- 
+---
 
 # Project Modules
 
 The codebase has been sub-divided into separate jars which more clearly separate different functionality areas and third-party dependencies.
 
 - **Core - spring-security-core.jar** : Contains core authentication and access-contol classes and interfaces, remoting support and basic provisioning APIs. Required by any application which uses Spring Security. Supports standalone applications, remote clients, method (service layer) security and JDBC user provisioning. Contains the top-level packages:
-	
+
 	- `org.springframework.security.core`
 	- `org.springframework.security.access`
 	- `org.springframework.security.authentication`
 	- `org.springframework.security.provisioning`
 
-- **Remoting - spring-security-remoting.jar** : Provides intergration with Spring Remoting. 
+- **Remoting - spring-security-remoting.jar** : Provides intergration with Spring Remoting.
 
 - **Web - spring-security-web.jar** : Contains filters and related web-security infrastructure code. Anything with a servlet API dependency. You’ll need it if you require Spring Security web authentication services and URL-based access-control. The main package is `org.springframework.security.web`.
 
@@ -132,6 +132,7 @@ The codebase has been sub-divided into separate jars which more clearly separate
 
 Please refer to below github repository to get started on Spring security
 
+Wrong path update this one...
 [Spring-Security-Exec](https://github.com/a2ankitrai/Spring-Security-Exec)
 
 
@@ -186,7 +187,6 @@ Also, you can achieve the same by adding below bean definition in your security 
 		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
 	}
 ```
-
 ---
 
 # Java Configuration
@@ -213,11 +213,160 @@ public class WebSecurityConfig implements WebMvcConfigurer {
 }
 
 ```
+---
+
+## Register the `springSecurityFilterChain`
+
+Spring Security provides a base class `AbstractSecurityWebApplicationInitializer` that will ensure the springSecurityFilterChain gets registered. The way in which we use `AbstractSecurityWebApplicationInitializer` differs depending on if we are already using Spring or if Spring Security is the only Spring component in our application.
+
+AbstractSecurityWebApplicationInitializer without Existing Spring - If you are not using Spring or Spring MVC, you will need to pass in the WebSecurityConfig into the superclass to ensure the configuration is picked up.
+
+```java
+import org.springframework.security.web.context.*;
+
+public class SecurityWebApplicationInitializer
+	extends AbstractSecurityWebApplicationInitializer {
+
+	public SecurityWebApplicationInitializer() {
+		super(WebSecurityConfig.class);
+	}
+}
+```
+
+AbstractSecurityWebApplicationInitializer with Spring MVC - If we were using Spring elsewhere in our application we probably already had a WebApplicationInitializer that is loading our Spring Configuration. If we use the previous configuration we would get an error. Instead, we should register Spring Security with the existing ApplicationContext.
+
+```java
+import org.springframework.security.web.context.*;
+
+public class SecurityWebApplicationInitializer
+	extends AbstractSecurityWebApplicationInitializer {
+
+}
+```
+
+## HttpSecurity
+
+The `WebSecurityConfigurerAdapter` provides a default configuration in the configure(HttpSecurity http) method that looks like:
+
+```java
+protected void configure(HttpSecurity http) throws Exception {
+	http
+		.authorizeRequests()
+			.anyRequest().authenticated()
+			.and()
+		.formLogin()
+			.and()
+		.httpBasic();
+}
+```
+
+##  Java Configuration and Form Login
+
+To provide custom login page redirection, the configuration can be updated as follows:
+
+```java
+protected void configure(HttpSecurity http) throws Exception {
+	http
+		.authorizeRequests()
+			.anyRequest().authenticated()
+			.and()
+		.formLogin()
+			.loginPage("/login")  //The updated configuration specifies the location of the log in page.
+			.permitAll(); // 	We must grant all users (i.e. unauthenticated users) access to our log in page.
+}
+```
+---
+
+## Spring JDBC Authentication (httpBasic)
+
+Security Configuration:
+
+```java
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.ank.springjdbcauthentication.repository.UserRepository;
+import com.ank.springjdbcauthentication.service.LoginUserDetailService;
+
+@EnableWebSecurity
+@Configuration
+@EnableJpaRepositories(basePackageClasses = UserRepository.class)
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+	     return new BCryptPasswordEncoder();
+    }
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+    	http
+
+    		.authorizeRequests()
+
+    		.anyRequest().fullyAuthenticated()
+
+    		.and()
+
+    		.httpBasic();
+    }
+
+    @Autowired
+    LoginUserDetailService loginUserDetailService;
+
+    @Autowired
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+	     auth.userDetailsService(loginUserDetailService).passwordEncoder(passwordEncoder());
+
+    }.
+}
+```
+
+The Authentication Manager will return an instance of `org.springframework.security.core.userdetails.UserDetails` interface. We have implemented the same in [CustomUser.java](https://github.com/a2ankitrai/Spring-Shots/blob/master/spring-security/spring-jdbc-authentication/src/main/java/com/ank/springjdbcauthentication/model/CustomUser.java).
+
+In this authentication we have used `UserDetailsService` interface implementation to loads user-specific data. This interface contains method `loadUserByUsername` which locates the user based on the username.
+
+> Here, we have used *HttpBasic* for authentication. Basic Authentication wasn't designed to manage logging out. So once the user is logged in, he will remain logged in even after server restarts until he is logged out by invalidating the session.
+
+[Github Repo](https://github.com/a2ankitrai/Spring-Shots/tree/master/spring-security/spring-jdbc-authentication)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---
 
-# Enable HTTPS in Spring Boot
+# Enabling HTTPS in Spring Boot
 
 To enable SSL (https) in a Spring Boot Application take the following steps:
 
@@ -275,7 +424,7 @@ server:
       key-store-password: password
       key-store-type: PKCS12
       key-alias: myCertX
-```	
+```
 
 
 *Copy the generated keystore file into the `resources` folder and reference the same in `key-store` property as `classpath:` {{file_name}} . If you storing the file directly under the root project, then the prefix `classpath:` is not required.*
@@ -289,7 +438,7 @@ Now the application is accessible over HTTPS on `https://localhost:8648`.
 
 - Make your client application secure. Facebook does not allow non secured apps anymore for Oauth 2.0 authentication. Use the steps from the previous sections to make your app HTTPS complaint
 
-- Create an app in `https://developers.facebook.com/` 
+- Create an app in `https://developers.facebook.com/`
 
 	- Save the client ID and client secret in your `application.yml` file as below.
 
@@ -319,25 +468,6 @@ Now the application is accessible over HTTPS on `https://localhost:8648`.
 ---
 
 
-Spring 5 Oauth 
+Spring 5 Oauth
 
 https://www.youtube.com/watch?v=WhrOCurxFWU
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
