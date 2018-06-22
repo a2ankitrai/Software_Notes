@@ -22,9 +22,9 @@
 
 ## Build Tools
 
-- [Maven](./build_tools/maven.md)
+- [Maven](./build_tools/maven/maven.md)
 
-- [Gradle](./build_tools/gradle.md)
+- [Gradle](./build_tools/gradle/gradle.md)
 
 ## Front-End Frameworks
 
