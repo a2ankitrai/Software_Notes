@@ -40,8 +40,11 @@ An interface can now contain method signatures for which an implementing class d
 
 - [Method references](./method-references.md)
 
+# Functional-style data processing
 
+- [Streams](./streams-introduction.md)
 
+- [Working with streams](./working-with-streams.md)
 
 
 
