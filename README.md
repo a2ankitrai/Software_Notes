@@ -12,6 +12,8 @@
 
 - [Reactor](./spring/pivotal-reactor.md)
 
+- [Mapstruct](./java/map-struct.md)
+
 ## Kafka
 
 - [Basics](./kafka/kafka.md)
@@ -59,3 +61,5 @@
 - [Code Review](./general/code-review.md)
 
 - [Hibernate Code Generation for Database Table](./general/hibernate_pojo_generation.md)
+
+- [Git cheatsheet](./general/git-version-control.md)

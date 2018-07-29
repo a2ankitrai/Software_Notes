@@ -29,6 +29,10 @@ Running `mvn install` from the command line will process resources, compile sour
 
 ## [Maven POM](./maven-pom-xml.md)
 
+---
+
+## [The Build Lifecycle](./build-lifecycle.md)
+
 
 
 
@@ -38,3 +42,8 @@ Running `mvn install` from the command line will process resources, compile sour
 ---
 
 ## [Maven Configuration Errors Resolution](./maven-error-resolutions.md)
+
+
+# References
+
+http://books.sonatype.com/mvnref-book/reference/index.html
