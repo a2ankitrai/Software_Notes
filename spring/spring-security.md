@@ -132,62 +132,7 @@ The codebase has been sub-divided into separate jars which more clearly separate
 
 Please refer to below github repository to get started on Spring security
 
-Wrong path update this one...
-[Spring-Security-Exec](https://github.com/a2ankitrai/Spring-Security-Exec)
-
-
-# Errors and Exceptions encounter and how to resolve them
-
-Following are the errors that you may come across while running the app.
-
-**`java.lang.IllegalArgumentException`: There is no PasswordEncoder mapped for the id "null"**
-
-[Full trace](./exception-trace/noPasswordEncoderMapped.md)
-
-Password storage has undergone a major overhaul to provide more secure defaults and the ability to migrate how passwords are stored. The default `PasswordEncoder` is now [DelegatingPasswordEncoder](https://docs.spring.io/spring-security/site/docs/5.0.0.RC1/api/org/springframework/security/crypto/password/DelegatingPasswordEncoder.html) which is a non-passive change. This change ensures that passwords are now encoded using BCrypt by default, allows for validating passwords in old formats, and allows for upgrading the password storage in the future.
-
-You can easily construct an instance using PasswordEncoderFactories.
-
-```
-PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-```
-
-Alternatively, you may create your own custom instance. For example:
-
-```
-String idForEncode = "bcrypt";
-Map encoders = new HashMap<>();
-encoders.put(idForEncode, new BCryptPasswordEncoder());
-encoders.put("noop", NoOpPasswordEncoder.getInstance());
-encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
-encoders.put("scrypt", new SCryptPasswordEncoder());
-encoders.put("sha256", new StandardPasswordEncoder());
-
-PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder(idForEncode, encoders);
-```
-
-As an immediate fix to the above exception is prefixing the password with {noop}
-
-For example, with a password of
-```
-password
-```
-you can simply prefix the password with {noop} like:
-```
-{noop}password
-```
-This will work, but it is NOT SECURE so it is not recommended for production environments.
-
-Also, you can achieve the same by adding below bean definition in your security config
-
-```
-@SuppressWarnings("deprecation")
-	@Bean
-	public static NoOpPasswordEncoder passwordEncoder() {
-		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-	}
-```
----
+[Spring-Security](https://github.com/a2ankitrai/Spring-Shots/tree/master/spring-security)
 
 # Java Configuration
 
@@ -432,6 +377,60 @@ server:
 Now the application is accessible over HTTPS on `https://localhost:8648`.
 
 
+---
+
+
+# Errors and Exceptions encounter and how to resolve them
+
+Following are the errors that you may come across while running the app.
+
+**`java.lang.IllegalArgumentException`: There is no PasswordEncoder mapped for the id "null"**
+
+[Full trace](./exception-trace/noPasswordEncoderMapped.md)
+
+Password storage has undergone a major overhaul to provide more secure defaults and the ability to migrate how passwords are stored. The default `PasswordEncoder` is now [DelegatingPasswordEncoder](https://docs.spring.io/spring-security/site/docs/5.0.0.RC1/api/org/springframework/security/crypto/password/DelegatingPasswordEncoder.html) which is a non-passive change. This change ensures that passwords are now encoded using BCrypt by default, allows for validating passwords in old formats, and allows for upgrading the password storage in the future.
+
+You can easily construct an instance using PasswordEncoderFactories.
+
+```
+PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+```
+
+Alternatively, you may create your own custom instance. For example:
+
+```
+String idForEncode = "bcrypt";
+Map encoders = new HashMap<>();
+encoders.put(idForEncode, new BCryptPasswordEncoder());
+encoders.put("noop", NoOpPasswordEncoder.getInstance());
+encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
+encoders.put("scrypt", new SCryptPasswordEncoder());
+encoders.put("sha256", new StandardPasswordEncoder());
+
+PasswordEncoder passwordEncoder = new DelegatingPasswordEncoder(idForEncode, encoders);
+```
+
+As an immediate fix to the above exception is prefixing the password with {noop}
+
+For example, with a password of
+```
+password
+```
+you can simply prefix the password with {noop} like:
+```
+{noop}password
+```
+This will work, but it is NOT SECURE so it is not recommended for production environments.
+
+Also, you can achieve the same by adding below bean definition in your security config
+
+```
+@SuppressWarnings("deprecation")
+	@Bean
+	public static NoOpPasswordEncoder passwordEncoder() {
+		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+	}
+```
 ---
 
 # Oauth2 Client Facebook implementation

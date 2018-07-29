@@ -94,7 +94,10 @@ https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reacti
 
 
 
-
+https://spring.io/blog/2016/09/22/new-in-spring-5-functional-web-framework
+https://dzone.com/articles/spring-webflux-getting-started
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#spring-webflux
+https://stackoverflow.com/questions/41476795/a-real-world-controller-example-with-spring-5-web-reactive
 
 
 
