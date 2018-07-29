@@ -15,7 +15,7 @@ Working with streams in general involves three items:
 
 The Streams interface supports a filter method which takes as argument a *predicate*(a function returning a boolean) and returns a stream including all elements that match the predicate.
 
-**Filtering uniquer elements**
+**Filtering unique elements**
 
 Streams also support a method called `distinct` that returns a stream with unique elements (according to the implementation of the `hashCode` and `equals` method of the objects produced by the stream).
 

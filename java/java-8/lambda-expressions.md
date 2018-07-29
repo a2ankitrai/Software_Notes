@@ -5,7 +5,7 @@ A lambda expression can be understood as a concise representation of an anonymou
 
 - *Anonymous* -  It doesn't have an explicit name like a method would normally have
 
-- *Function* - Lambda is not associated with a particular class like a method is. But like a method, a lambda das a list of parameters, a body. a return type, and a possible list of exceptions that can be thrown.
+- *Function* - Lambda is not associated with a particular class like a method is. But like a method, a lambda has a list of parameters, a body. a return type, and a possible list of exceptions that can be thrown.
 
 - *Passed around*- A lambda expression can be passed as argument to a method or stored in a variable.
 

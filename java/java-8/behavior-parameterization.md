@@ -13,6 +13,11 @@ import java.util.List;
 import com.ank.java8.behavior_param.common.Apple;
 import com.ank.java8.behavior_param.common.Color;
 
+interface ApplePredicate {
+
+    boolean test(Apple apple);
+}
+
 public class AppleFilterTestApproach3 {
 
     public static List<Apple> filterApples(List<Apple> inventory, ApplePredicate predicate) {

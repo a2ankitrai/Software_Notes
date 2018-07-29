@@ -5,7 +5,7 @@ Streams are an update to the Java API that lets you manipulate collections of da
 
 A *stream* is a sequence of elements from a source that supports data processing operations.
 
-- *Sequence of elements* - Like a collection, a stream provides an interface to a sequenced set of values of a specific  element type. Collections are mostly about storing and accessing elements with specific time/space complexities. But streams are about expressing computations such as filter, sorted, and map. Collections are about data; streams are about computations.
+- *Sequence of elements* - Like a collection, a stream provides an interface to a sequenced set of values of a specific  element type. Collections are mostly about storing and accessing elements with specific time/space complexities. But streams are about expressing computations such as `filter`, `sorted`, and `map`. Collections are about data; streams are about computations.
 
 - *Source* - Streams consume from a data-providing source such as collections, arrays, or I/O resources. Generating a stream from an ordered collection preserves the ordering.
 
@@ -23,7 +23,7 @@ The JDK's standard implementation of `Stream` interface is the internal class `j
 
 # Streams vs Collections
 
-A collection is is an in-memory data structure that holds all the values the data data structure currently has -  every element in the collection had to be computed before it can be added to the collection. (You can add or remove elements from the collection, but a each moment in time, every element in the collection is stored in memory, elements have to be computed before becoming part of collection)
+A collection is an in-memory data structure that holds all the values the data data structure currently has -  every element in the collection had to be computed before it can be added to the collection. (You can add or remove elements from the collection, but a each moment in time, every element in the collection is stored in memory, elements have to be computed before becoming part of collection)
 
 By contrast, a stream is a conceptually fixed data structure whose elements are *computed on demand*. The idea is that a user will extract only the values they required from a stream, and these elements are produced - invisibly to the user - only as and when required.
 

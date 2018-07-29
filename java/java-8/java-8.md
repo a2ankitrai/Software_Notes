@@ -1,7 +1,8 @@
-Java 8
+# Java 8
 ---
 
-# Overview - Java 8 major features:
+Overview - Java 8 major features:
+---
 
 ## Behavior Parameterization
 
@@ -10,8 +11,9 @@ Java 8 adds the ability to pass methods (code) as arguments to other methods. Th
 
 ## Functional style programming
 
-The whole point of a programming language is to manipulate values (Objects), which are called as first-class citizens (values) of the program as they are passed from one place to another during execution. Other structures in our programming languages, which perhaps helps us express the structure of values but which can't be passed around during program execution, are second-class citizens. Values are first-class Java citizens, but various other Java concepts, such as methods and classes, exemplify second-class citizens..
-Being able to pass methods aroung at run-time, and hence making them first-class citizens, is very useful in programming. Java 8 decided to allow methods to be used as values by introducing *method reference* `::` syntax (meaning "use this method as a value").
+The whole point of a programming language is to manipulate values (Objects), which are called as first-class citizens (values) of the program as they are passed from one place to another during execution. Other structures in our programming languages, which perhaps helps us express the structure of values but which can't be passed around during program execution, are second-class citizens. Values are first-class Java citizens, but various other Java concepts, such as methods and classes, exemplify second-class citizens.
+
+Being able to pass methods around at run-time, and hence making them first-class citizens, is very useful in programming. Java 8 decided to allow methods to be used as values by introducing *method reference* `::` syntax (meaning "use this method as a value").
 
 Another way Java 8 allows methods (specifically block of code) to be used as values is *lambdas*(or anonymous functions).
 
