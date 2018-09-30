@@ -1,5 +1,5 @@
 # REST_notes
- 
+
 
 https://stackoverflow.com/questions/2840275/whats-the-best-source-for-learning-how-to-create-restful-apis-in-java
 
@@ -15,7 +15,7 @@ REST APIs shoule be about resources not functionalities. Functionality MUST not 
 | `DELETE`        | To *delete* a resource.    |  
 | `PATCH`         | To perform a *partial update* to a resource.      |  
 
- 
+
 - The actual operation invoked MUST match the HTTP method semantics as defined in the table above.
 
 - The `GET` method MUST NOT have side effects. It MUST NOT change the state of an underlying resource(s).
@@ -48,6 +48,8 @@ The purpose of HTTP headers is to provide metadata information about the body or
 **PATCH** - replace parts of the source resource with the values provided AND|OR other parts of the resource are updated that you havent provided (timestamps) AND|OR updating the resource effects other resources (relationships)
 
 The difference between the PUT and PATCH requests is reflected in the way the server processes the enclosed entity to modify the resource identified by the Request-URI. In a PUT request, the enclosed entity is considered to be a modified version of the resource stored on the origin server, and the client is requesting that the stored version be replaced. With PATCH, however, the enclosed entity contains a set of instructions describing how a resource currently residing on the origin server should be modified to produce a new version.
+ 
+The HTTP PATCH method should be used whenever you would like to change or update just a small part of the state of the resource. You should use the PUT method only when you would like to replace the resource in its entirety. Note that PATCH is not a replacement for PUT or POST, but just a way of applying a delta update to a resource representation. Roy Fielding, who authored the REST architectural style and many web standards, said that he created PATCH because “partial PUT is never RESTful.”
 
 
 
@@ -59,3 +61,22 @@ The difference between the PUT and PATCH requests is reflected in the way the se
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---

@@ -6,24 +6,30 @@ Installing Mongo DB
 - Update Homebrew’s package database.
 	In a system shell, issue the following command:
 
-	```brew update```
+	```
+	brew update
+	```
 
-- Install MongoDB	
+- Install MongoDB
 
 	To install the MongoDB binaries, issue the following command in a system shell:
 
-	```brew install mongodb ```
+	```
+	brew install mongodb
+	```
 
 	Install the Latest Development Release of MongoDB
 
-	```brew install mongodb --devel```
+	```
+	brew install mongodb --devel
+	```
 
 
 # Run MongoDB
 
 - Create the data directory
 
-	Before you start MongoDB for the first time, create the directory to which the mongod process will write data. By default, the mongod process uses the /data/db directory. If you create a directory other than this one, you must specify that directory in the dbpath option when starting the mongod process later in this procedure.
+	Before you start MongoDB for the first time, create the directory to which the `mongod` process will write data. By default, the `mongod` process uses the `/data/db` directory. If you create a directory other than this one, you must specify that directory in the `dbpath` option when starting the `mongod` process later in this procedure.
 
 	The following example command creates the default /data/db directory:
 
@@ -60,7 +66,7 @@ Installing Mongo DB
 		If you do not use the default data directory (i.e., /data/db), specify the path to the data directory using the --dbpath option:
 
 		```
-		mongod --dbpath <path to data directory>	
+		mongod --dbpath <path to data directory>
 		```
 
 - Verify that MongoDB has started successfully		
@@ -80,4 +86,3 @@ Installing Mongo DB
 	```
 
 	Later, to stop MongoDB, press Control+C in the terminal where the mongod instance is running.
-

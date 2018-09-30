@@ -18,3 +18,55 @@ In a Spring-based application, our application objects live within an object con
 `WebApplicationContext` is an extension of a plain `ApplicationContext`. it is web aware `ApplicationContext` i.e it has Servlet Context information. When `DispatcherServlet` is loaded, it looks for the bean configuration file of `WebApplicationContext` and initializes it.
 
 ---
+
+
+## CORS
+
+For security reasons, browsers prohibit AJAX calls to resources outside the current origin.
+
+The `@CrossOrigin` annotation enables cross-origin requests on annotated controller methods,
+
+```java
+@RestController
+@RequestMapping("/account")
+public class AccountController {
+
+    @CrossOrigin
+    @GetMapping("/{id}")
+    public Account retrieve(@PathVariable Long id) {
+        // ...
+    }
+
+    @DeleteMapping("/{id}")
+    public void remove(@PathVariable Long id) {
+        // ...
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---

@@ -14,19 +14,19 @@ JBoss Tools can be used to generate java classes from database tables.
 
 # Installing JBoss Tools
 
-- Go to Eclipse Marketplace and search for JBOSS tools. 
+- Go to Eclipse Marketplace and search for JBOSS tools.
 
 <br>
 
-![eclipse_market.png](./images/eclipse_market.png) 
+![eclipse_market.png](./images/eclipse_market.png)
 
 <br>
 
-- Select Hibernate Tools from the list. 
+- Select Hibernate Tools from the list.
 
 <br>
 
-![hibernate_tools.png](./images/hibernate_tools.png) 
+![hibernate_tools.png](./images/hibernate_tools.png)
 
 <br>
 
@@ -38,7 +38,7 @@ JBoss Tools can be used to generate java classes from database tables.
 
 Open Hibernate Perspective from Windows tab
 
-<br> 
+<br>
 
 ![hibernate_perspective_1.png](./images/hibernate_perspective_1.png)
 
@@ -46,7 +46,7 @@ Open Hibernate Perspective from Windows tab
 
 ![hibernate_perspective_2.png](./images/hibernate_perspective_2.png)
 
---- 
+---
 
 # Adding console Configuration
 
@@ -114,13 +114,20 @@ Click on Run and you will have freshly baked POJOs. :)
 
 # Issues
 
-- **Annotations not getting generated with the Domain code.**
+## **Annotations not getting generated with the Domain code.**
 
-While creating the Hibernate Console Configuration, ensure that you select the type as `Annotations (jdk 1.5+)`.
+-	While creating the Hibernate Console Configuration, ensure that you select the type as `Annotations (jdk 1.5+)`.
 
-![console_config_type.png](./images/console_config_type.png)
+ 	![console_config_type.png](./images/console_config_type.jpg)
 
+- Hibernate version should be set to `5.2` in Hibernate Configuration. Annotations does not get generated when the version is `5.3`
 
- 
+- The mysql-jdbc connector needs to be of version `5.x.x`. The latest `8.x.x` also causes issues.
 
- 
+- Hibernate Tools version in maven is set to `5.2.11.Final`.
+
+---
+
+## References
+
+- [How to generate Hibernate mapping files & annotation with Hibernate Tools](https://www.mkyong.com/hibernate/how-to-generate-code-with-hibernate-tools/)

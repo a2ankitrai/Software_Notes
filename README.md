@@ -63,3 +63,5 @@
 - [Hibernate Code Generation for Database Table](./general/hibernate_pojo_generation.md)
 
 - [Git cheatsheet](./general/git-version-control.md)
+
+- [Other good blogs and articles](./general/other-blogs-n-articles.md)

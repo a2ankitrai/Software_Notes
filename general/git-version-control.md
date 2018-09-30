@@ -33,3 +33,11 @@ or
 ```
 git reset --hard <<origin_name>>/<<branch_name>>
 ```
+
+---
+
+- Discarding local changes and resetting the code to origin
+
+```
+git checkout -- <file>
+```
