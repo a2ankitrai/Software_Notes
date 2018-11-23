@@ -53,8 +53,8 @@ Selector by id does not work in Angular.
 
 ## DataBinding
 
-[databinding_1.png](./images/databinding_1.png)
-[databinding_2.png](./images/databinding_2.png)
+![databinding_1.png](./images/databinding_1.png)
+![databinding_2.png](./images/databinding_2.png)
 
 **String interpolation**
 

@@ -1,4 +1,3 @@
-
 # Lambda expressions
 
 A lambda expression can be understood as a concise representation of an anonymous function that can be passed around; it doesn't have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exception that can be thrown.

@@ -1,12 +1,26 @@
 # Other Blogs and Articles
 ---
 
-
 ## Spring
 
 - [Spring Boot – Best Practices](https://www.e4developer.com/2018/08/06/spring-boot-best-practices/)
 - [Spring Boot - Logging configuration](https://www.mkyong.com/spring-boot/spring-boot-slf4j-logging-example/)
 - [Configuring Spring boot application to run on Google App Engine](https://medium.com/google-cloud/getting-started-with-google-app-engine-and-spring-boot-in-5-steps-2d0f8165c89)
+
+- [Bean validation with Spring Boot](https://reflectoring.io/bean-validation-with-spring-boot/)
+
+**Registration of user**
+
+- [Registration token clean-up](https://www.baeldung.com/registration-token-cleanup)
+- [Registration – Password Strength and Rules](https://www.baeldung.com/registration-password-strength-and-rules)
+
+- [Password policy enforcement for Java](http://www.passay.org/)
+
+**Avoid all the code to be executed synchronously- use event publishing in async manner**
+
+- [Event publishing and listening](https://www.baeldung.com/spring-events)
+
+- [Enabling Async](https://www.baeldung.com/spring-async)
 
 ## Hibernate
 

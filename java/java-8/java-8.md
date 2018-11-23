@@ -48,6 +48,18 @@ An interface can now contain method signatures for which an implementing class d
 
 - [Working with streams](./working-with-streams.md)
 
+- Collecting data with Streams
+
+- Parallel data processing and performance
+
+# Effective Java 8 Programming
+
+- Refactoring, testing and debugging
+
+- Default methods
+
+- [Optional as an alternative to null](./optional.md)
+
 
 
 

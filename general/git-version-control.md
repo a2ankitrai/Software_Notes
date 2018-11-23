@@ -41,3 +41,33 @@ git reset --hard <<origin_name>>/<<branch_name>>
 ```
 git checkout -- <file>
 ```
+
+---
+
+## Deleting branch
+
+**Locally**
+```
+git branch -d the_local_branch
+```
+
+**Remote Branch**
+
+```
+git push origin --delete the_remote_branch
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----

@@ -80,6 +80,7 @@ An encapsulation policy for the template and CSS styles. It can be one of follow
 If not supplied, the value is taken from CompilerOptions. The default compiler option is `ViewEncapsulation.Emulated`.
 
 If the policy is set to `ViewEncapsulation.Emulated` and the component has no styles or styleUrls specified, the policy is automatically switched to `ViewEncapsulation.None`.
+
 ---
 
 ## Local References

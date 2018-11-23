@@ -126,6 +126,37 @@ Click on Run and you will have freshly baked POJOs. :)
 
 - Hibernate Tools version in maven is set to `5.2.11.Final`.
 
+## **Avoiding Foreign Key association Sets generation**
+
+- Use Revenge Strategy for the same.
+
+```java
+import java.util.List;
+
+import org.hibernate.cfg.reveng.DelegatingReverseEngineeringStrategy;
+import org.hibernate.cfg.reveng.ReverseEngineeringStrategy;
+import org.hibernate.cfg.reveng.TableIdentifier;
+
+public class RevengStrategy extends DelegatingReverseEngineeringStrategy {
+
+	public RevengStrategy(ReverseEngineeringStrategy delegate) {
+		super(delegate);
+	}
+
+	@Override
+	public boolean excludeForeignKeyAsManytoOne(String keyname, TableIdentifier fromTable, List fromColumns,
+			TableIdentifier referencedTable, List referencedColumns) {
+		return true;
+	}
+
+	@Override
+	public boolean excludeForeignKeyAsCollection(String keyname, TableIdentifier fromTable, List fromColumns,
+			TableIdentifier referencedTable, List referencedColumns) {
+		return true;
+	}
+}
+```
+
 ---
 
 ## References

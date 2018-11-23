@@ -56,6 +56,10 @@
 
 - [Twelve-Factor App](./System_Design_Scalability/twelve-factor_app.md)
 
+## Blockchain
+
+- [Blockchain Basics](./blockchain/blockchain.md)
+
 ## General Topics
 
 - [Code Review](./general/code-review.md)
@@ -64,4 +68,4 @@
 
 - [Git cheatsheet](./general/git-version-control.md)
 
-- [Other good blogs and articles](./general/other-blogs-n-articles.md)
+## [Other good blogs and articles](./general/other-blogs-n-articles.md)

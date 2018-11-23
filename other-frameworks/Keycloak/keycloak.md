@@ -37,7 +37,7 @@ Create the admin on the welcome page.
 
 1. Click the Administration Console link. Alternatively you can go to the console URL directly at http://localhost:8080/auth/admin/
 
-2. Type the username and password you created on the Welcome page
+2. Type the username and password you created on the Welcome page (admin/admin)
 
 ---
 

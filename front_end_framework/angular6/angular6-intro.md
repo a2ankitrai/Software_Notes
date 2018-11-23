@@ -83,7 +83,7 @@ Strongly type javascript. More features than vanilla javascript - Types, Classes
 ```
 npm install --save bootstrap@latest
 ```
-- Install additionally the required dependencies (jquery and popper).
+- Install the required dependencies (jquery and popper).
 
 - add the css file entry in `angular.json` under styles `"node_modules/bootstrap/dist/css/bootstrap.min.css", `
 
