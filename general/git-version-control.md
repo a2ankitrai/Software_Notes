@@ -57,6 +57,38 @@ git branch -d the_local_branch
 git push origin --delete the_remote_branch
 ```
 
+## Removing cherry-pick commit
+
+A cherry-pick is basically a commit, so if you want to undo it, you just undo the commit.
+
+> when I have other local changes
+
+Stash your current changes so you can reapply them after resetting the commit.
+
+```
+$ git stash
+$ git reset --hard HEAD^
+$ git stash pop  # or `git stash apply`, if you want to keep the changeset in the stash
+```
+
+> when I have no other local changes
+
+```
+$ git reset --hard HEAD^
+```
+
+----
+
+# Setting up ssh for GIT.
+
+https://help.github.com/en/articles/connecting-to-github-with-ssh
+
+https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key
+
+https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account
+
+
+
 
 
 
