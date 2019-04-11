@@ -106,7 +106,7 @@ A struct is a collection of key value pairs very similar to a mapping but the va
 
 ![008_solidity_gotcha_1.png](./images/008_solidity_gotcha_1.png)
 
-We do not yet have the ability to pull a nested dynamic rate from the solidity world over to the javascript world.
+We do not yet have the ability to pull a nested dynamic arrays from the solidity world over to the javascript world.
 
 This is not a limitation of javascript and it's not a limitation of solidity. It's a limitation of the bridge between the two languages. That's the limitation of the communication layer, of the translation layer between the two.
 
@@ -174,9 +174,25 @@ Code for Resetting
 
 ![013_resetting_contract_2.png](./images/013_resetting_contract_2.png)
 
+---
 
+## Function Modifiers
 
+When we use the modifier key word we are defining a new function modifier to be added to our contract. Function modifiers are used solely as a means of reducing the amount of code which is repeating.
 
+When we place the created modifier in a function definition, behind the scenes the solidity compiler is going to take all the code out of your function and add it to the modifier in place of that underscore. So the underscore you can kind of imagine as being like a little target like take out all the code out of that function and stick it in where that underscore is.
+
+This allows us to write one modifier and then use it in many places. So it's a classic solution to the don't repeat yourself problem.
+
+![014_function_modifier.png](./images/014_function_modifier.png)
+
+---
+
+## Contract Review
+
+![015_contract_review.png](./images/015_contract_review.png)
+
+---
 
 
 
