@@ -36,3 +36,8 @@
 
 - [UUID/GUID as primary keys](https://tomharrisonjr.com/uuid-or-guid-as-primary-keys-be-careful-7b2aa3dcb439)
 - [Code generation from database tables](https://stackoverflow.com/questions/14140545/creating-entity-class-using-database-existing-table)
+
+
+## Maven Issues
+
+- [Adding one maven project as dependency into another](http://javing.blogspot.com/2013/04/how-do-i-add-project-as-dependency-of.html)
