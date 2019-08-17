@@ -10,7 +10,7 @@ RxJava is the Java implementation of this concept. RxJava is published under the
 Reactive programming provides a simple way of asynchronous programming. This allows to simplify the asynchronously processing of potential long running operations. It also provides a defined way of handling multiple events, errors and termination of the event stream. Reactive programming provides also a simplified way of running different tasks in different threads.
 
 ## Build blocks for RxJava
- 
+
 
 - `observables` representing sources of data
 
@@ -126,13 +126,13 @@ import io.reactivex.observers.DisposableSingleObserver;
 public class CompositeDisposableTest {
 
 	public static void main(String[] args) {
-		
+
 		CompositeDisposable compositeDisposable = new CompositeDisposable();
-		
+
 		Single<String> single1 = Single.just("Alpha");
 		Single<String> single2 = Single.just("Beta");
 		Single<String> single3 = Single.just("Gamma");
-		
+
 		compositeDisposable.add(single1.subscribeWith(new DisposableSingleObserver<String>() {
 		    @Override
 		    public void onError(Throwable e) {
@@ -144,11 +144,11 @@ public class CompositeDisposableTest {
 				System.out.println(t);
 			}
 		}));
-		
+
 		compositeDisposable.add(single2.subscribe(System.out::println));
-		 
+
 		compositeDisposable.add(single3.subscribe(System.out::println));
-		
+
 		compositeDisposable.dispose();
 	}
 }
@@ -161,7 +161,7 @@ public class CompositeDisposableTest {
 
 When working with observables doing async calls on every subscription on an observable is often not necessary.
 
-It likely happens that observables are passed around in the application, without the need to do an such an expensive call all the time a subscription is added.
+It likely happens that observables are passed around in the application, without the need to do an such an expensive call all the time a subscription is added 
 
 The below code snippet makes use of the `cache` method, so that the `Single` instance keeps its result, once it was successful for the first time.
 
@@ -196,6 +196,3 @@ anotherMethodThatsSupposedToSubscribeTheSameSingle(cachedSingle);
 ```
 
 [Github Repo Link](https://github.com/a2ankitrai/Rx-Java-Test)
-
-
- 
