@@ -67,7 +67,7 @@ We can apply a Gradle plugin (this term is used when we add a plugin to a projec
 
 ## Gradle Wrapper
 
-Gradle wrapper is a convinient feature of gradle that allows to maintain the version of the gradle build across differnt executions and platforms. Gradle Wrapper task can be created as below: 
+Gradle wrapper is a convinient feature of gradle that allows to maintain the version of the gradle build across differnt executions and platforms. Gradle Wrapper task can be created as below:
 
 ```
 
@@ -76,8 +76,8 @@ task wrapper(type: Wrapper) {
 }
 
 ```
- 
---- 
+
+---
 
 ## Gradle Tasks
 
@@ -121,142 +121,18 @@ Task3 << {println "This is Task 3 (three) in Running mode"}
 
 ```
 
-
-
-
 ---
 
 [Building a spring project in gradle](https://spring.io/guides/gs/gradle/#scratch)
 
+---
 
+## How to define Gradle's home in IDEA?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https://stackoverflow.com/questions/18495474/how-to-define-gradles-home-in-idea
 
 ---
 
 To be continued...
 
 https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-our-first-java-project/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
