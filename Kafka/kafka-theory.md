@@ -13,17 +13,21 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 ![kafka_in_enterprise](./images/kafka_in_enterprise.png)
 
-# Topics & Partitions
+# Topics, Partitions & Offsets
 
 ![topics_n_partitions](./images/topics_n_partitions.png)
 
-- Offset only have a meaning for a specific partition.
+## Example
+
+![topic_example.png](./images/topic_example.png)
+
+- **Offset** only have a meaning for a specific partition.
 
 	-	E.g. offset 3 in partition 2 doesn't represent the same data as offset 3 in partition 1.
 
 - Order is guaranteed only within a partition (not across partitions)
 
-- Data is kept only for a limited time. (default is two weeks)
+- Data is kept only for a limited time. (default is one weeks)
 
 - Once the data is written to a partition, **it can't be changed** (immutability)
 
@@ -54,7 +58,7 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 - Topics should have a replication factor > 1 (usually between 2 and 3)
 
-- This wasy if a broker is down, another broker can serve the data
+- This way if a broker is down, another broker can serve the data
 
 - Example: Topic with 2 partitions and replication factor of 2 
 
@@ -76,6 +80,8 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 - There each partition has: one leader, and multiple ISR (in-sync replica)
 
+- The leader and ISR is determined by Zookeeper.
+
 ![topic_replication_3](./images/topic_replication_3.png)
 
 
@@ -83,7 +89,11 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 # Producers
 
-- Producers write data to topics.
+- Producers write data to topics (which is made of partitions).
+
+- Producers automatically know to which broker and partition to write to
+
+- In case of Broker failures, Producers will automatically recover.
 
 - **They only have to specify the topic name and one broker to connect to, and Kafka will automatically take care of routing the data to the right brokers**.
 
@@ -98,9 +108,11 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 ## Producers: Message keys
 
-- Producers can choose to send a key with the message.
+- Producers can choose to send a key with the message (string, number, etc..).
 
-- If a key is sent, then the producer has the guarantee that all messages for that key will always go to the same partition.
+- If key=null, data is sent round robin (broker 101 then 102 then 103...)
+
+- If a key is sent, then the producer has the guarantee that all messages for that key will always go to the same partition. A key is basically sent if you need message ordering for a specific field.
 
 - This enables to guarantee ordering of a specific key.
 
@@ -111,13 +123,19 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 # Consumers
 
-- Consumers read data from a topic 
+- Consumers read data from a topic (identified by name)
+
+- Consumers know which broker to read from
+
+- In case of broker failures, consumers know how to recover.
 
 - **They only have to specify the topic name and one broker to connect to, and Kafka will automatically take care of pulling the data from the right brokers**.
 
 - Data is read in order **for each partitions.**
  
 ![consumers_1](./images/consumers_1.png)
+
+- Note: *Consumers will automatically use a GroupCoordinator and a ConsumerCoordinator to assign a consumers to a partition*
 
 ## Consumer Groups
 
@@ -129,17 +147,54 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 ![consumers_2](./images/consumers_2.png)
 
+**What if too many consumers?**
+
+- If you have more consumers than partitions, some consumers will be inactive.
+
+![multiple_consumers.png](./images/multiple_consumers.png)
+
 ## Consumer Offsets
 
 - Kafka stores the offsets at which a consumer group has been reading
 
-- The offset commit live in a Kafka topic named `__consumer_offsets`
+- The offset commit live in a Kafka topic named  `__consumer_offsets`
 
 - When a consumer has processed data received some Kafka, it should be committing the offsets
 
 - If a consumer process dies, it will be able to read back from where it left off thanks to consumer offsets!
 
 ![consumers_3](./images/consumers_3.png)
+
+## Delivery semantics for consumers
+
+- Consumers choose when to commit offsets
+
+- There are three delivery semantics:
+
+- **At most once**
+	- offsets are committed as soon as the message is received.
+	- If the processing goes wrong, the message will be lost(it won't be read again).
+
+- **At least once(usually preferred)**
+	- offsets are committed after the message is processed.
+	- If the processing goes wrong, the message will be read again.
+	- This can result in duplicate processing of messages. Make sure your processing is idempotent(ie. processing again the messages won't impact your systems)
+
+- **Exactly once**
+	- Can be achieved for Kafka => Kafka workflows using Kafka Streams API.
+	- For Kafka => External system workflows, use an idempotent consumer.	
+
+---
+
+# Kafka Broker Discovery
+
+- Every Kafka broker is also called a "bootstrap server".
+
+- That means that you only need to connect to one broker, and you will be connected to the entire cluster.
+
+- Each broker knows about all brokers, topics and partitions (metadata).
+
+![broker_discovery.png](./images/broker_discovery.png)
 
 ---
 
@@ -155,8 +210,10 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 - Zookeeper ususally operates in an odd quorum (cluster) of servers (3,5,7)
 
-- Zookeeper has a leader, the rest of the servers are followers
+- Zookeeper has a leader(handle writes), the rest of the servers are followers(handle reads)
  
+- Zookeeper does not store consumer offsets with Kafka > v0.10)
+
 ![zookeeper](./images/zookeeper.png)
 
 ---
@@ -179,17 +236,10 @@ Kafka is a distributed publish-subscribe messaging system that is designed to be
 
 ---
 
-# Delivery semantics for consumers
+# Summary
 
-Consumers choose when to commit offsets.
+![theory-summary.png](./images/theory-summary.png)
 
-	- __At most once:__ offsets are committed as soon the message is received. If the processing goes wrong, the message will be lost (it won't be read again).
-
-	- __At least once:__ offsets are committed after the message is processed. If the processing goes wrong, the message will be read again. This can result in duplicate processing of messages. Make sure your processing is idempotent (i.e. processing again the messages won't impact your systems)
-
-	- __Exactly once:__ Very difficult to acheive / needs strong engineering.
-
-__**Bottom Line:**__ most often you should use at least once processing and ensure your transformations / processing are idempotent.
 
   
 

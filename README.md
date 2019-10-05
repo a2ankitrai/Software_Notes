@@ -16,7 +16,7 @@
 
 ## Kafka
 
-- [Basics](./kafka/kafka.md)
+- [Kafka Theory](./kafka/kafka-theory.md)
 
 ## MicroServices
 
