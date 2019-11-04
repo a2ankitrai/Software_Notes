@@ -56,3 +56,16 @@ To describe the consumers and offset status use `--describe` arguement.
 ![consumer-group-describe-2.png](./images/consumer-group-describe-2.png)
 
 
+---
+
+## Resetting Offsets
+
+- To earliest
+
+![resetting-offsets.png](./images/resetting-offsets.png)
+
+- Shift By
+
+![shift_by_offset.png](./images/shift_by_offset.png)
+
+
