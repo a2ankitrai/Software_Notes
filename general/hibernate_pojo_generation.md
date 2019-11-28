@@ -126,6 +126,10 @@ Click on Run and you will have freshly baked POJOs. :)
 
 - Hibernate Tools version in maven is set to `5.2.11.Final`.
 
+## **Two classes getting generated for a single table**
+
+If you do not specify the primary key on the table, two classes will get generated. One with table_name and one with table_nameID. To avoid add the primary key into your table.
+
 ## **Avoiding Foreign Key association Sets generation**
 
 - Use Revenge Strategy for the same.
