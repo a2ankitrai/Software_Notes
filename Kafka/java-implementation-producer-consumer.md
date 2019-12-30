@@ -26,7 +26,7 @@
 
 # Streaming twitter data via Kafka producer
 
-[Github source code for twitter producer](https://github.com/simplesteph/kafka-beginners-course/tree/master/kafka-producer-twitter/src/main/java/kafka/tutorial2)
+[Github source code for twitter producer](https://github.com/simplesteph/kafka-beginners-course/blob/master/kafka-producer-twitter/src/main/java/kafka/tutorial2/TwitterProducer.java)
 
 ---
 
@@ -67,7 +67,11 @@
 # Idempotent Producer
 
 ![idempotent_producer_1.png](./images/idempotent_producer_1.png)
+
 ![idempotent_producer_2.png](./images/idempotent_producer_2.png)
+
+Producer also sends a producer id which is used to identify duplicate messages.
+
 ![idempotent_producer_3.png](./images/idempotent_producer_3.png)
 
 ---
@@ -125,9 +129,21 @@ Benchmarks here: https://blog.cloudflare.com/squeezing-the-firehose/
 
 ---
 
+# Linger.ms & batch.size
 
+![linger_batch_1.png](./images/linger_batch_1.png)
 
+## Controlling the batching mechanism
 
+**Linger.ms**
+
+![linger_batch_2.png](./images/linger_batch_2.png)
+
+![linger_batch_3.png](./images/linger_batch_3.png)
+
+**Batch size**
+
+![linger_batch_4.png](./images/linger_batch_4.png)
 
 
 
