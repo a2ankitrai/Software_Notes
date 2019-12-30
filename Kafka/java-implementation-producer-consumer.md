@@ -122,6 +122,7 @@ Benchmarks here: https://blog.cloudflare.com/squeezing-the-firehose/
 ## Recommendations
 
 ![message_compression_4.png](./images/message_compression_4.png)
+
 ---
 
 
