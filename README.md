@@ -18,6 +18,12 @@
 
 - [Kafka Theory](./kafka/kafka-theory.md)
 
+- [Kafka Setup & CLI](./kafka/kafka-setup_and_cli.md)
+
+- [Java Producer implementation and configurations](./kafka/java-implementation-producer-consumer.md)
+
+- [ElasticSearch consumer and configuration](./kafka/elastic-search-consumer-and-configurations.md)
+
 ## MicroServices
 
 - [Introduction](./micro_services/microservices.md)

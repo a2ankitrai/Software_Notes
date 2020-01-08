@@ -145,7 +145,19 @@ Benchmarks here: https://blog.cloudflare.com/squeezing-the-firehose/
 
 ![linger_batch_4.png](./images/linger_batch_4.png)
 
+---
 
+# Producer Default Partitioner and how keys are hashed
+
+![producer_partioner.png](./images/producer_partioner.png)
+
+---
+
+# Max.block.ms & buffer.memory
+
+![buffer_memory_1.png](./images/buffer_memory_1.png)
+
+![buffer_memory_2.png](./images/buffer_memory_2.png)
 
 
 
