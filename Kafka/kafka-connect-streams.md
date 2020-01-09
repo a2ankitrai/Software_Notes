@@ -32,8 +32,12 @@ Kafka connect confluent
 
 # Kafka Streams
 
+**Use case**
+
 ![kafka-streams_1.png](./images/kafka-streams_1.png)
-![kafka-streams_1.png](./images/kafka-streams_1.png)
+
+**Purpose**
+![kafka-streams_2.png](./images/kafka-streams_2.png)
 
 # Kafka Streams Architecture Design
 
@@ -46,3 +50,35 @@ Kafka connect confluent
 **example: Tweets Filtering**
 
 ![kafka-streams_5.png](./images/kafka-streams_5.png)
+
+
+# Schema Registry
+
+## The need for a schema registry
+
+![schema_registry_1.png](./images/schema_registry_1.png)
+
+**Scenarios:**
+
+![schema_registry_2.png](./images/schema_registry_2.png)
+
+**Requirements**
+
+![schema_registry_3.png](./images/schema_registry_3.png)
+
+**Enabling data verification in Kafka - not good**
+
+![schema_registry_4.png](./images/schema_registry_4.png)
+
+
+![schema_registry_5.png](./images/schema_registry_5.png)
+
+----
+
+## Pipeline without Schema Registry
+
+![schema_registry_6.png](./images/schema_registry_6.png)
+
+## Confluent Schema Registry Purpose
+
+![schema_registry_7.png](./images/schema_registry_7.png)

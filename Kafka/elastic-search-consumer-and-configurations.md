@@ -88,3 +88,7 @@ String id = record.topic() + "_" + record.partition() + "_" + record.offset();
 ## Consumer Heartbeat Thread
 
 ![Consumer-Heartbeat-Thread.png](./images/Consumer-Heartbeat-Thread.png)
+
+## Consumer Poll Thread
+
+![Consumer-Poll-Thread.png](./images/Consumer-Poll-Thread.png)

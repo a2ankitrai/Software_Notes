@@ -24,6 +24,8 @@
 
 - [ElasticSearch consumer and configuration](./kafka/elastic-search-consumer-and-configurations.md)
 
+- [Kafka Connect & Streams](./kafka/kafka-connect-streams.md)
+
 ## MicroServices
 
 - [Introduction](./micro_services/microservices.md)
