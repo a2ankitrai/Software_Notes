@@ -26,6 +26,8 @@
 
 - [Kafka Connect & Streams](./kafka/kafka-connect-streams.md)
 
+- [Kafka real world insights](./kafka/real-world_insights.md)
+
 ## MicroServices
 
 - [Introduction](./micro_services/microservices.md)
