@@ -67,6 +67,33 @@
 
 ---
 
+## Finance Application - MyBank
+
+**Requirements**
+
+![mybank_1.png](./images/mybank_1.png)
+
+**Architecture**
+
+![mybank_2.png](./images/mybank_2.png)
+
+**Topics configurations considerations**
+
+![mybank_3.png](./images/mybank_3.png)
+
+----
+
+## Big Data Ingestion
+
+![big_data_ingestion_1.png](./images/big_data_ingestion_1.png)
+
+![big_data_ingestion_2.png](./images/big_data_ingestion_2.png)
+
+---
+
+## Logging & Metrics Aggregation
+
+![logging_n_metrics.png](./images/logging_n_metrics.png)
 
 
 
