@@ -16,17 +16,17 @@
 
 ## Kafka
 
-- [Kafka Theory](./kafka/kafka-theory.md)
+- [Kafka Theory](./kafka_1/kafka-theory.md)
 
-- [Kafka Setup & CLI](./kafka/kafka-setup_and_cli.md)
+- [Kafka Setup & CLI](./kafka_1/kafka-setup_and_cli.md)
 
-- [Java Producer implementation and configurations](./kafka/java-implementation-producer-consumer.md)
+- [Java Producer implementation and configurations](./kafka_1/java-implementation-producer-consumer.md)
 
-- [ElasticSearch consumer and configuration](./kafka/elastic-search-consumer-and-configurations.md)
+- [ElasticSearch consumer and configuration](./kafka_1/elastic-search-consumer-and-configurations.md)
 
-- [Kafka Connect & Streams](./kafka/kafka-connect-streams.md)
+- [Kafka Connect & Streams](./kafka_1/kafka-connect-streams.md)
 
-- [Kafka real world insights](./kafka/real-world_insights.md)
+- [Kafka real world insights](./kafka_1/real-world_insights.md)
 
 ## MicroServices
 
